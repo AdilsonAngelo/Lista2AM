@@ -30,6 +30,11 @@ def lvq1(training_set, prototype_num, alpha=1):
     classes = set()
     for t in training_set:
         classes.add(t[-1])
+
+    if prototype_num < len(classes):
+        raise ValueError('Number of prototypes ({}) must be equal or greater then number of classes ({})'.format(
+            prototype_num, len(classes)))
+
     prototypes = [random_vector(training_set) for i in range(prototype_num)]
 
     for i in range(len(prototypes)):
